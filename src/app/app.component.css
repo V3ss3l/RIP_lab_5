@@ -1,0 +1,27 @@
+.main {
+  display: grid;
+  grid-template-rows: 1fr 75px 1fr;
+  grid-row-gap: 20px;
+  align-items: center;
+  justify-items: center;
+}
+.add-object{
+  display: grid;
+  grid-template-columns: 250px 250px 150px;
+  gap: 15px;
+  margin-top: 10px;
+  margin-left: 10px;
+  align-items: center;
+}
+#select-object{
+  grid-column: 1;
+}
+
+#points_object{
+  grid-column: 2;
+}
+
+#btn-add-obj{
+  grid-column: 3;
+}
+
