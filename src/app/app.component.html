@@ -1,5 +1,5 @@
 <div class="main">
-  <div *ngIf="done_subjects.length != 0">
+  <div *ngIf="done_subjects.length != 0" class="list-of-sel-obj">
     <mat-card *ngFor="let subj of done_subjects">
       <mat-card-title>{{subj.name}}</mat-card-title>
       <mat-card-subtitle>{{subj.count}}</mat-card-subtitle>
@@ -12,15 +12,17 @@
   </div>
     <form #f="ngForm" (ngSubmit)="add_subject(f)" class="add-object">
       <mat-form-field id="select_object">
-        <mat-select name="sel_obj" ngModel>
+        <mat-select name="sel_obj" required ngModel>
           <mat-option value="Математика">Математика</mat-option>
           <mat-option value="Русский язык">Русский язык</mat-option>
           <mat-option value="Физика">Физика</mat-option>
+          <mat-option value="Химия">Химия</mat-option>
+          <mat-option value="ИКТ">ИКТ</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field id="points_object">
         <mat-label>Колличество баллов</mat-label>
-        <input matInput type="number" placeholder="Введите количество баллов" name="points" ngModel>
+        <input matInput type="number" placeholder="Введите количество баллов" required max="100" min="0" name="points" ngModel>
       </mat-form-field>
       <button mat-flat-button id="btn-add-obj">
         Add
@@ -28,11 +30,12 @@
     </form>
 
   <div>
-    <button mat-raised-button (click)="show_list()">Показать список университетов</button>
+    <button mat-raised-button *ngIf="is_show_universities" (click)="show_list()">Скрыть список университетов</button>
+    <button mat-raised-button *ngIf="!is_show_universities" (click)="show_list()">Показать список университетов</button>
   </div>
 
   <div class="list-of-universities" *ngIf="is_show_universities">
-        <mat-card *ngFor="let univer of universities">
+        <mat-card *ngFor="let univer of universities" class="univer-card">
           <mat-card-title>{{univer.name}}</mat-card-title>
           <mat-card-content *ngFor="let dep of univer.departments">
             <mat-expansion-panel hideToggle *ngIf="sum >= dep.averageScore">
@@ -51,31 +54,7 @@
           </mat-card-content>
           <mat-card-footer>{{univer.shortName}}</mat-card-footer>
         </mat-card>
-<!--    <mat-grid-list cols="1" rowHeight="100px">-->
-<!--      <mat-grid-tile *ngFor="let univer of universities">-->
-<!--        <mat-card>-->
-<!--          <mat-card-title>{{univer.name}}</mat-card-title>-->
-<!--          <mat-card-content *ngFor="let dep of univer.departments">-->
-<!--            <mat-expansion-panel hideToggle>-->
-<!--              <mat-expansion-panel-header>{{dep.nameSpeciality}}</mat-expansion-panel-header>-->
-<!--              <mat-panel-description>{{dep.codeSpeciality}}</mat-panel-description>-->
-<!--              <p>Основные предметы</p>-->
-<!--              <mat-list *ngFor="let obj of dep.subjects" >-->
-<!--                <mat-list-item>{{obj}}</mat-list-item>-->
-<!--              </mat-list>-->
-<!--              <p>Доп предметы</p>-->
-<!--              <mat-list *ngFor="let obj of dep.multipleSubjects" >-->
-<!--                <mat-list-item>{{obj}}</mat-list-item>-->
-<!--              </mat-list>-->
-<!--              <p>Средний проходной балл {{dep.averageScore}}</p>-->
-<!--            </mat-expansion-panel>-->
-<!--          </mat-card-content>-->
-<!--          <mat-card-footer>{{univer.shortName}}</mat-card-footer>-->
-<!--        </mat-card>-->
-<!--      </mat-grid-tile>-->
-<!--    </mat-grid-list>-->
   </div>
-
 </div>
 
 

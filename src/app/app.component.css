@@ -25,3 +25,20 @@
   grid-column: 3;
 }
 
+.list-of-universities{
+  display: flex;
+  gap: 15px;
+}
+
+.list-of-sel-obj{
+  display: flex;
+  gap: 15px;
+}
+
+.univer-card{
+  width: 600px;
+  height: min-content;
+  border-radius: 5px;
+  border-color: gold;
+}
+
